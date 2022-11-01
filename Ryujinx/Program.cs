@@ -7,6 +7,7 @@ using Ryujinx.Common.Logging;
 using Ryujinx.Common.System;
 using Ryujinx.Common.SystemInfo;
 using Ryujinx.Modules;
+using Ryujinx.SDL2.Common;
 using Ryujinx.Ui;
 using Ryujinx.Ui.Common;
 using Ryujinx.Ui.Common.Configuration;
@@ -17,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ryujinx
@@ -110,6 +112,18 @@ namespace Ryujinx
 
             // Initialize Discord integration.
             DiscordIntegrationModule.Initialize();
+
+            // Initialize SDL2 driver
+            SDL2Driver.MainThreadDispatcher = action =>
+            {
+                using var ev = new ManualResetEvent(false);
+                Gtk.Application.Invoke(delegate
+                {
+                    action();
+                    ev.Set();
+                });
+                ev.WaitOne();
+            };
 
             // Sets ImageSharp Jpeg Encoder Quality.
             SixLabors.ImageSharp.Configuration.Default.ImageFormatsManager.SetEncoder(JpegFormat.Instance, new JpegEncoder()
