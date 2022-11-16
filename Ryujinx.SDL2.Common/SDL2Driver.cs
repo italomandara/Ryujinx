@@ -28,7 +28,6 @@ namespace Ryujinx.SDL2.Common
             }
         }
 
-        public static readonly TimeSpan WaitTime = TimeSpan.FromMilliseconds(10);
         public static Action<Action> MainThreadDispatcher { get; set; }
 
         private const uint SdlInitFlags = SDL_INIT_EVENTS | SDL_INIT_GAMECONTROLLER | SDL_INIT_JOYSTICK | SDL_INIT_AUDIO | SDL_INIT_VIDEO;

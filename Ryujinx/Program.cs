@@ -122,7 +122,7 @@ namespace Ryujinx
                     action();
                     ev.Set();
                 });
-                ev.WaitOne(SDL2Driver.WaitTime);
+                ev.WaitOne();
             };
 
             // Sets ImageSharp Jpeg Encoder Quality.
