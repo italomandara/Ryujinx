@@ -155,7 +155,7 @@ namespace Ryujinx.SDL2.Common
                     HandleSDLEvent(ref events[0]);
                 }
 
-                waitHandle.Wait(WaitTime.Milliseconds);
+                waitHandle.Wait(2000);
             }
         }
 
