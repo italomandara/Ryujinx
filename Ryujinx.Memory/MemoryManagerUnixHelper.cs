@@ -45,7 +45,7 @@ namespace Ryujinx.Memory
         private const int MAP_UNLOCKED_LINUX_GENERIC = 0x80000;
 
         private const int MAP_NORESERVE_DARWIN = 0x40;
-        private const int MAP_JIT_DARWIN = 0x800;
+        // private const int MAP_JIT_DARWIN = 0x800;
         private const int MAP_ANONYMOUS_DARWIN = 0x1000;
 
         public const int MADV_DONTNEED = 4;
@@ -151,10 +151,10 @@ namespace Ryujinx.Memory
                 }
             }
 
-            if (OperatingSystem.IsMacOSVersionAtLeast(10, 14))
-            {
-                result |= MAP_JIT_DARWIN;
-            }
+            // if (OperatingSystem.IsMacOSVersionAtLeast(10, 14))
+            // {
+            //     result |= MAP_JIT_DARWIN;
+            // }
 
             return result;
         }
