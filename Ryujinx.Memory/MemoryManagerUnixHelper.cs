@@ -153,7 +153,7 @@ namespace Ryujinx.Memory
 
             if (OperatingSystem.IsMacOSVersionAtLeast(10, 14))
             {
-                result |= MAP_JIT_DARWIN;
+                // result |= MAP_JIT_DARWIN;
             }
 
             return result;
